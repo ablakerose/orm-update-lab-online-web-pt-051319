@@ -53,9 +53,16 @@ class Student
    end
 
    def self.new_from_db(row)
-     #binding.pry
-
      Student.new(row[1], row[2], row[0])
-
    end
+
+   def drop_table
+     sql = <<-SQL
+       DROP TABLE students 
+     SQL
+     DB[:conn].execute(sql)
+  
+     
+   end
+   
   end
