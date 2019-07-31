@@ -49,4 +49,5 @@ end
      sql = "UPDATE students SET name = ?, grade = ? WHERE id = ?"
      data = DB[:conn].execute(sql, self.name, self.grade, self.id)
    end
+   binding.pry
   end
