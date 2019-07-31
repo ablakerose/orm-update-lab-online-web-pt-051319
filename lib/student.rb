@@ -33,8 +33,8 @@ class Student
 
     def self.create(name:, grade:)
       student = Student.new(name, grade)
-      song.save
-      song
+      student.save
+      student
     end
 
     def self.find_by_name(name)
