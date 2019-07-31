@@ -21,17 +21,17 @@ class Student
     end
 
     def save
-  if self.id
-    self.update
-  else
-    sql = <<-SQL
-      INSERT INTO students (name, grade)
-      VALUES (?, ?)
-    SQL
-    DB[:conn].execute(sql, self.name, self.grade)
-    @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
+      if self.id
+        self.update
+      else
+        sql = <<-SQL
+          INSERT INTO students (name, grade)
+          VALUES (?, ?)
+        SQL
+        DB[:conn].execute(sql, self.name, self.grade)
+        @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
+      end
   end
-
 
     def self.create(name:, grade:)
       student = Student.new(name, grade)
@@ -43,7 +43,7 @@ class Student
       sql = "SELECT * FROM students WHERE name = ?"
       result = DB[:conn].execute(sql, name)[0]
       Student.new(result[0], result[1], result[2])
-
+      
       end
 
     def update
