@@ -56,7 +56,7 @@ class Student
      Student.new(row[1], row[2], row[0])
    end
 
-   def drop_table
+   def self.drop_table
      sql = <<-SQL
        DROP TABLE students
      SQL
